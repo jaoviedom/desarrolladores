@@ -32,7 +32,7 @@ class CreateDesarrolladorsTable extends Migration
      */
     public function down()
     {
-        Schema::create('desarrolladors', function (Blueprint $table) {
+        Schema::table('desarrolladors', function (Blueprint $table) {
             $table->dropForeign('desarrolladors_proyecto_id_foreign');
         });
         Schema::dropIfExists('desarrolladors');

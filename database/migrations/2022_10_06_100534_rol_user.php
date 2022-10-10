@@ -28,7 +28,7 @@ class RolUser extends Migration
      */
     public function down()
     {
-        Schema::create('rol_user', function (Blueprint $table) {
+        Schema::table('rol_user', function (Blueprint $table) {
             $table->dropForeign('rol_user_user_id_foreign');
             $table->dropForeign('rol_user_rol_id_foreign');
         });
