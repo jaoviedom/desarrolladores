@@ -17,7 +17,20 @@
         <main class="px-3">
             <h1>Proyectos de software</h1>
             <p class="fs-4 fw-lighter my-5">Sistema de información que permite gestionar los proyectos de software de una casa de desarrollo.</p>
-            <a href="{{ route('proyectos.index') }}" class="btn btn-light btn-lg w-100">Ingresar</a>
+            @auth
+                <div class="row gy-3">
+                    <div class="col-md">
+                        <a href="{{ route('proyectos.index') }}" class="btn btn-light btn-lg w-100">Proyectos</a>
+                    </div>
+                    @can(['administrador'])
+                        <div class="col-md">
+                            <a href="{{ route('desarrolladores.index') }}" class="btn btn-light btn-lg w-100">Desarrolladores</a>
+                        </div>
+                    @endcan
+                </div>
+            @else
+                <a href="{{ route('login') }}" class="btn btn-light btn-lg w-100">Ingresar</a>
+            @endauth
         </main>
         <footer class="mt-auto">
             .:: ADSI 2472155 ::.

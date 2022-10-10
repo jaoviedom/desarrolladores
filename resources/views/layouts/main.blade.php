@@ -23,9 +23,12 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item" href="{{ route('proyectos.index') }}">Listar</a></li>
-                            <li><a class="dropdown-item" href="{{ route('proyectos.create') }}">Crear nuevo</a></li>
+                            @can(['administrador'])
+                                <li><a class="dropdown-item" href="{{ route('proyectos.create') }}">Crear nuevo</a></li>
+                            @endcan
                         </ul>
                     </li>
+                    @can(['administrador'])
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Desarrolladores
@@ -35,6 +38,7 @@
                             <li><a class="dropdown-item" href="{{ route('desarrolladores.create') }}">Crear nuevo</a></li>
                         </ul>
                     </li>
+                    @endcan
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Buscar..." name="buscar" aria-label="Buscar">

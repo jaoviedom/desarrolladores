@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Desarrollador;
 use App\Models\Proyecto;
 use Illuminate\Http\Request;
+use Gate;
 
 class DesarrolladorController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,6 +32,10 @@ class DesarrolladorController extends Controller
      */
     public function create()
     {
+        if(Gate::denies('administrador'))
+        {
+            abort(403);
+        }
         $proyectos = Proyecto::orderBy('nombre', 'asc')
                                 ->get();
         return view('desarrolladores.insert', compact('proyectos'));
@@ -51,6 +61,10 @@ class DesarrolladorController extends Controller
      */
     public function show($id)
     {
+        if(Gate::denies('administrador'))
+        {
+            abort(403);
+        }
         $desarrollador = Desarrollador::join('proyectos', 'desarrolladors.proyecto_id', 'proyectos.id')
                                         ->select('desarrolladors.id', 'desarrolladors.nombre', 
                                         'desarrolladors.apellido', 'desarrolladors.telefono', 
@@ -69,6 +83,10 @@ class DesarrolladorController extends Controller
      */
     public function edit($id)
     {
+        if(Gate::denies('administrador'))
+        {
+            abort(403);
+        }
         $desarrollador = Desarrollador::findOrFail($id);
         $proyectos = Proyecto::orderBy('nombre', 'asc')
                                 ->get();
@@ -99,6 +117,10 @@ class DesarrolladorController extends Controller
      */
     public function destroy($id)
     {
+        if(Gate::denies('administrador'))
+        {
+            abort(403);
+        }
         $desarrollador = Desarrollador::findOrFail($id);
         $desarrollador->delete();
         return redirect()->route('desarrolladores.index');

@@ -14,11 +14,13 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
-    <div class="mt-3">
-        <a href="{{ route('proyectos.create') }}" class="btn btn-secondary">
-            Crear nuevo proyecto
-        </a>
-    </div>
+    @can(['administrador'])
+        <div class="mt-3">
+            <a href="{{ route('proyectos.create') }}" class="btn btn-secondary">
+                Crear nuevo proyecto
+            </a>
+        </div>
+    @endcan
     <div class="my-3">
         @if (count($proyectos) > 0)
             <table class="table table-hover">

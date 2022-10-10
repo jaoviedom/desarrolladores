@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Proyecto;
 use App\Models\Desarrollador;
 use Illuminate\Http\Request;
+use Gate;
 
 class ProyectoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -39,6 +46,12 @@ class ProyectoController extends Controller
      */
     public function create()
     {
+        // solo lo puede hacer el admin
+        if(Gate::denies('administrador'))
+        {
+            // abort(403);
+            return redirect()->route('proyectos.index');
+        }
         return view('proyectos.insert');
     }
 
@@ -79,6 +92,10 @@ class ProyectoController extends Controller
      */
     public function edit($id)
     {
+        if(Gate::denies('administrador'))
+        {
+            abort(403);
+        }
         $proyecto = Proyecto::findOrFail($id);
         return view('proyectos.edit', compact('proyecto'));
     }
@@ -111,6 +128,10 @@ class ProyectoController extends Controller
      */
     public function destroy($id)
     {
+        if(Gate::denies('administrador'))
+        {
+            abort(403);
+        }
         $proyecto = Proyecto::findOrFail($id);
         $proyecto->delete();
         return redirect()->route('proyectos.index');

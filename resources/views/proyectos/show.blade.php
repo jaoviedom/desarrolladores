@@ -19,12 +19,14 @@
                     </tr>
                 </tbody>
             </table>
-            <h5 class="my-3">Desarrolladores:</h5>
-            <ul class="list-group list-group-flush mb-3">
-                @foreach ($desarrolladores as $item)
-                    <li class="list-group-item">{{ $item->nombre }} {{ $item->apellido }}</li>
-                @endforeach
-            </ul>
+            @can(['administrador'])
+                <h5 class="my-3">Desarrolladores:</h5>
+                <ul class="list-group list-group-flush mb-3">
+                    @foreach ($desarrolladores as $item)
+                        <li class="list-group-item">{{ $item->nombre }} {{ $item->apellido }}</li>
+                    @endforeach
+                </ul>
+            @endcan
             <a href="{{ route('proyectos.index') }}" class="btn btn-secondary">Volver</a>
         </div>
         <div class="col-sm-3"></div>
