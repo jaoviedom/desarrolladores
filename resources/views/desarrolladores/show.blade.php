@@ -7,6 +7,9 @@
     <div class="row my-3">
         <div class="col-sm-3"></div>
         <div class="col-sm-6">
+            <div class="my-3 d-flex justify-content-center">
+                <img src="{{ asset('storage') . '/' . $desarrollador->foto }}" alt="Foto" class="img-fluid img-miniatura">
+            </div>
             <table class="table table-bordered mt-3">
                 <tbody>
                     <tr>

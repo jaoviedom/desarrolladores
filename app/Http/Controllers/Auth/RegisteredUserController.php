@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Rol;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -46,6 +47,12 @@ class RegisteredUserController extends Controller
         ]);
 
         event(new Registered($user));
+
+        // Asignar rol 'usuario'
+        $rol = Rol::where('nombre', 'Usuario')
+                    ->first();
+        
+        $user->roles()->attach($rol);
 
         Auth::login($user);
 

@@ -3,7 +3,7 @@
 @section('titulo', 'Nuevo desarrollador')
 
 @section('content')
-    <form action="{{ route('desarrolladores.store') }}" method="post" class="needs-validation" novalidate>
+    <form action="{{ route('desarrolladores.store') }}" method="post" class="needs-validation" enctype="multipart/form-data" novalidate>
         @csrf
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre" required>
@@ -44,6 +44,10 @@
             <div class="invalid-feedback">
                 Debe seleccionar un proyecto.
             </div>
+        </div>
+        <div class="mb-3">
+            <label for="foto">Foto:</label>
+            <input type="file" name="foto" id="foto" class="form-control">
         </div>
         <button type="submit" class="btn btn-secondary">Guardar</button>
     </form>

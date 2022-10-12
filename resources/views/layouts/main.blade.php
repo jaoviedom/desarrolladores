@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ asset('css/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fontawesome/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/main.css') }}">
     <title>@yield('titulo')</title>
 </head>
 <body class="bg-light">
@@ -38,6 +39,9 @@
                             <li><a class="dropdown-item" href="{{ route('desarrolladores.create') }}">Crear nuevo</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('usuarios.index') }}">Usuarios</a>
+                    </li>              
                     @endcan
                 </ul>
                 <form class="d-flex" role="search">

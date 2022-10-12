@@ -5,3 +5,11 @@
 .logo {
     max-width: 100px;
 }
+
+.img-miniatura {
+    max-width: 100px;
+    border-radius: 50%;
+    border-color: black;
+    border-style: solid;
+    border-width: 2px;
+}

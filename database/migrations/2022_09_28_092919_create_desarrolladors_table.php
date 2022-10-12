@@ -19,6 +19,7 @@ class CreateDesarrolladorsTable extends Migration
             $table->string('apellido');
             $table->string('telefono');
             $table->string('direccion');
+            $table->string('foto')->nullable();
             $table->foreignId('proyecto_id')->constrained('proyectos');
             $table->timestamps();
             $table->softDeletes();
