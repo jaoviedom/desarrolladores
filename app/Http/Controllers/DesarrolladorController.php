@@ -136,7 +136,10 @@ class DesarrolladorController extends Controller
             abort(403);
         }
         $desarrollador = Desarrollador::findOrFail($id);
-        $desarrollador->delete();
+        if(Storage::delete('public/' . $desarrollador->foto))
+        {
+            $desarrollador->delete();
+        }
         return redirect()->route('desarrolladores.index');
     }
 }
